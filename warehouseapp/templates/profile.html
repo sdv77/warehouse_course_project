@@ -1,0 +1,33 @@
+<!-- profile.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+</head>
+<body>
+    <h1>Ваш профиль</h1>
+    <h2>Ваши ячейки:</h2>
+    
+    {% if cells_with_items %}
+        <ul>
+            {% for entry in cells_with_items %}
+                <li>
+                    <strong>Ячейка: {{ entry.cell.id }}</strong>
+                    <ul>
+                        {% for item in entry.items %}
+                            <li>Предмет: {{ item.item.name }}</li>  <!-- Отображаем имя предмета -->
+                        {% empty %}
+                            <li>В ячейке нет предметов.</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Пусто.</p>
+    {% endif %}
+    
+    <a href="{% url 'logout' %}">Выйти</a> <!-- Кнопка выхода -->
+</body>
+</html>
