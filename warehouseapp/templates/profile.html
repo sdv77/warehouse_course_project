@@ -1,33 +1,40 @@
 <!-- profile.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Профиль</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body>
-    <h1>Ваш профиль</h1>
-    <h2>Ваши ячейки:</h2>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Ваш профиль📦</h1>
+    <h2 class="mb-3">Ваши ячейки:</h2>
     
     {% if cells_with_items %}
-        <ul>
+        <ul class="list-group">
             {% for entry in cells_with_items %}
-                <li>
+                <li class="list-group-item">
                     <strong>Ячейка: {{ entry.cell.id }}</strong>
-                    <ul>
+                    <ul class="list-group mt-2">
                         {% for item in entry.items %}
-                            <li>Предмет: {{ item.item.name }}</li>  <!-- Отображаем имя предмета -->
+                            <li class="list-group-item">Предмет: {{ item.item.name }}</li>  <!-- Отображаем имя предмета -->
                         {% empty %}
-                            <li>В ячейке нет предметов.</li>
+                            <li class="list-group-item">В ячейке нет предметов.</li>
                         {% endfor %}
                     </ul>
                 </li>
             {% endfor %}
         </ul>
     {% else %}
-        <p>Пусто.</p>
+        <p class="text-center">Пусто.</p>
     {% endif %}
     
-    <a href="{% url 'logout' %}">Выйти</a> <!-- Кнопка выхода -->
+    <div class="text-center mt-4">
+        <a href="{% url 'logout' %}" class="btn btn-danger">Выйти</a> <!-- Кнопка выхода -->
+    </div>
+</div>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
