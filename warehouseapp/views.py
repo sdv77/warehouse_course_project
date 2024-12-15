@@ -54,3 +54,6 @@ def logout_view(request):
     except KeyError:
         pass
     return redirect('login')
+
+def home(request):
+    return render(request, 'home.html')
