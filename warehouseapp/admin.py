@@ -13,10 +13,8 @@ class UserAdmin(ImportExportModelAdmin):
     resource_class = UserResource
     list_display = ('id', 'name', 'email')
     search_fields = ('name', 'email')
-    list_filter = ('email',)
+    list_filter = ('name',)
     ordering = ('id',)
-
-# Повтори аналогичные шаги для остальных моделей
 
 class TypeStorageResource(resources.ModelResource):
     class Meta:
@@ -97,3 +95,7 @@ class ReviewAdmin(ImportExportModelAdmin):
     search_fields = ('user__name', 'description')
     list_filter = ('user',)
     ordering = ('id',)
+
+admin.site.site_header = "Warehouse Staff"
+admin.site.site_title = "Warehouse Staff"
+admin.site.index_title = "Welcome to Warehouse Staff Admin"
