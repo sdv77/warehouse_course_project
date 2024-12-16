@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Cell, User  # Используем вашу модель User
+from .models import Cell, User, ItemInfo
+from django.http import JsonResponse  # Используем вашу модель User
 
 def login_view(request):
     if request.method == 'POST':
@@ -57,3 +58,10 @@ def logout_view(request):
 
 def home(request):
     return render(request, 'home.html')
+
+def get_item_info(request, item_id):
+    try:
+        item_info = ItemInfo.objects.get(item_id=item_id)
+        return JsonResponse({'description': item_info.description})
+    except ItemInfo.DoesNotExist:
+        return JsonResponse({'description': None})
