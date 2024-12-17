@@ -11,7 +11,7 @@ on:
 
 jobs:
   checkstyle_project:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Git clone repo
         uses: actions/checkout@v2
